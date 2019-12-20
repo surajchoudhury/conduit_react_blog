@@ -1,0 +1,153 @@
+//sign in container
+
+.signin_main_container {
+  width: 700px;
+  height: 450px;
+  display: flex;
+  margin: auto;
+  box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}
+.sign_in_container_signin {
+  width: 40%;
+  padding: 9rem 1rem;
+  text-align: center;
+  border-top-left-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+  background-color: #57b499;
+  background-color: rgba(#58b697, 0.8);
+}
+.welcome_back {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #fff;
+}
+.welcome_back_text {
+  font-size: 0.7rem;
+  line-height: 1rem;
+  font-weight: 200;
+  color: #fff;
+  padding: 2rem 0;
+}
+.signin_button {
+  padding: 0.8rem 0;
+  width: 10rem;
+  border-radius: 1.5rem;
+  background-color: transparent;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.6rem;
+  word-spacing: 0.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  outline: none;
+  cursor: pointer;
+}
+
+// sign_up
+.sign_up_container_signin {
+  width: 60%;
+  padding: 4rem 5rem;
+  background-color: #fff;
+  border-radius: 0;
+  border-top-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+  text-align: center;
+}
+.create_account {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #58b697;
+}
+.logo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.facebook_logo,
+.google_logo,
+.linkedin_logo {
+  height: 2.2rem;
+  font-size: 1.1rem;
+  margin: 1rem 0.2rem;
+  width: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(116, 116, 116, 0.2);
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid rgba(116, 116, 116, 0.5);
+  }
+}
+.email_registration {
+  font-size: 0.7rem;
+  font-weight: 100;
+  color: #9d9f9e;
+}
+
+.create_account_form {
+  display: grid;
+  margin: 1rem 0;
+}
+.input_signin_container {
+  width: 100%;
+  position: relative;
+  margin: 0.3rem 0;
+}
+.input_signin {
+  width: 100%;
+  color: #9d9f9e;
+  font-size: 0.75rem;
+  font-weight: 100;
+  padding: 0.7rem 0;
+  padding-left: 2.3rem;
+  background-color: #f4f8f7;
+  outline: none;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  &:focus {
+    border: 1px solid rgba(#58b697, 0.5);
+  }
+  &:focus ~ .input_logo {
+    color: #58b697;
+  }
+}
+.input_signin::placeholder {
+  color: #9d9f9e;
+  font-size: 0.75rem;
+  font-weight: 100;
+}
+.input_logo {
+  position: absolute;
+  color: #8a8b8b;
+  font-weight: 100;
+  top: 0.7rem;
+  left: 0.9rem;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+.signup_button {
+  background-color: #53b0a0;
+  text-align: center;
+  margin: 1rem auto;
+  cursor: pointer;
+}
+
+// sign up
+
+.signup_main_container {
+  flex-direction: row-reverse;
+}
+.sign_in_container_signin {
+  border-radius: 0;
+  border-top-left-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}
+.sign_up_container_signup {
+  background-color: rgba(#2faf8b, 0.8);
+  border-radius: 0;
+  border-top-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+}

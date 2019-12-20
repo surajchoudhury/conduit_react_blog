@@ -1,0 +1,145 @@
+.home {
+  max-width: 1300px;
+  height: 900px;
+  margin: 5rem auto;
+  display: flex;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  align-items: center;
+  box-shadow: 0px 0px 11px -1px rgba(90, 90, 90, 0.3);
+  background-color: #fff;
+}
+.home_link {
+  text-decoration: none;
+}
+
+// sidebar
+.sidebar {
+  width: 5.5rem;
+  border: none;
+}
+
+.sidebar_logo_container {
+  height: 7.5rem;
+}
+.conduit_logo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.conduit_logo {
+  width: 150%;
+}
+.sidebar_icons_container {
+  border-top-right-radius: 4rem;
+  background-color: #46989a;
+  height: 100vh;
+  padding: 5rem 0;
+  padding-left: 0.5rem;
+}
+.settings_icon {
+  transition: transform 0.9s;
+}
+
+.sidebar_icon_container {
+  padding: 0.8rem;
+  padding-left: 1.2rem;
+  border-top-left-radius: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-bottom-left-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #fff;
+    .sidebar_icon {
+      color: #46989a;
+    }
+    .settings_icon {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.sidebar_icon {
+  font-size: 1.7rem;
+  color: #fff;
+  transition: all 0.3s;
+  padding-bottom: 0.2rem;
+}
+.sign_in_icon {
+  font-size: 1.9rem;
+}
+.sidebar_icon_text {
+  font-size: 0.6rem;
+  transition: all 0.3s;
+  color: #46989a;
+}
+// Main home
+.home_main_container {
+  width: 100%;
+  display: flex;
+}
+
+// Middle
+.middle {
+  width: 75%;
+}
+.middle_sub_container {
+  padding: 1rem;
+  margin: 5rem auto;
+  width: 90%;
+  height: 100vh;
+  border-radius: 0.8rem;
+  box-shadow: 0px 0px 11px -1px rgba(90, 90, 90, 0.1);
+}
+.global_feed {
+  font-size: 0.9rem;
+  color: #46989a;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid#46989a;
+}
+// aside
+
+.aside_container {
+  width: 25%;
+  background-color: #fdf6f7;
+}
+.aside_sub_container {
+  margin: 5rem 1rem;
+}
+.tags_main_container {
+  background-color: rgba(#fff,.8);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.2);
+}
+.popular_tags {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #46989a;
+  cursor: pointer;
+}
+.tags_container {
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 0.3rem 0.4rem;
+  margin: 0.1rem;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  background-color: rgba(#46989a, 0.9);
+  &:hover {
+    background-color: transparent;
+    border: 1px solid rgba(#46989a, 0.8);
+    color: #46989a;
+    text-decoration: underline;
+  }
+}
