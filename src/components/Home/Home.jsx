@@ -17,8 +17,7 @@ class Home extends React.Component {
     this.state = {
       tag: [],
       articles: [],
-      article: [],
-      profiles:[]
+      profiles: []
     };
   }
 
@@ -35,7 +34,7 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.state.tag, this.state.articles, this.state.profiles);
+    console.log(this.state.tag.tags);
     return (
       <section className="home">
         <Sidebar />
@@ -49,8 +48,8 @@ class Home extends React.Component {
                 <Signin />
               </Route>
               <Route path="/">
-                <Middle />
-                <Aside />
+                <Middle articles={this.state.articles.articles} />
+                <Aside tag={this.state.tag.tags} />
               </Route>
             </Switch>
           </>
