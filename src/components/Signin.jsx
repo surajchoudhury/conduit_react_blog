@@ -4,16 +4,47 @@ import { FaGooglePlusG } from "react-icons/fa";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiLock } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class Signin extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      username: "",
-      password: ""
+      email: "",
+      password: "",
+      message: ""
     };
   }
+
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  };
+
+  handleSignin = event => {
+    event.preventDefault();
+    fetch("http://localhost:3000/api/v1/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(data => data.json())
+      .then(data => {
+        if (data.success) {
+          this.props.history.push("/");
+          localStorage.setItem("token", data.token);
+          localStorage.token
+            ? this.props.isLogged(true)
+            : this.props.isLogged(false);
+        } else {
+          this.setState({ message: data.message });
+        }
+      });
+  };
   render() {
     return (
       <div className="signin_main_container signup_main_container">
@@ -40,12 +71,14 @@ class Signin extends React.Component {
             </span>
           </div>
           <p className="email_registration">or use your email account</p>
-          <form className="create_account_form">
+          <form className="create_account_form" onSubmit={this.handleSignin}>
             <div className="input_signin_container">
               <input
                 className="input_signin"
                 type="email"
                 placeholder="Email"
+                name="email"
+                onChange={this.handleChange}
               />
               <AiOutlineMail className="input_logo" />
             </div>
@@ -54,6 +87,8 @@ class Signin extends React.Component {
                 className="input_signin"
                 type="password"
                 placeholder="Password"
+                name="password"
+                onChange={this.handleChange}
               />
               <FiLock className="input_logo" />
             </div>
@@ -69,4 +104,4 @@ class Signin extends React.Component {
   }
 }
 
-export default Signin;
+export default withRouter(Signin);

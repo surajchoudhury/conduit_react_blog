@@ -48,12 +48,25 @@
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
-    background-color: #fff;
     .sidebar_icon {
-      color: #46989a;
+      transform: rotatez(-15deg);
+    }
+    .sidebar_icon_text {
+      color: #fff;
     }
     .settings_icon {
-      transform: rotate(180deg);
+      transform: rotate(100deg);
+    }
+  }
+}
+.sidebar_icon_container_active {
+  background-color: #fff;
+  .sidebar_icon {
+    color: #46989a;
+  }
+  &:hover {
+    .sidebar_icon_text {
+      color: #46989a;
     }
   }
 }
@@ -64,8 +77,8 @@
   transition: all 0.3s;
   padding-bottom: 0.2rem;
 }
-.settings_icon{
-  transition: transform .5s;
+.settings_icon {
+  transition: transform 0.5s;
 }
 .sign_in_icon {
   font-size: 1.9rem;
@@ -91,14 +104,15 @@
   width: 95%;
   height: 100vh;
   border-radius: 0.8rem;
-  // box-shadow: 0px 0px 11px -1px rgba(90, 90, 90, 0.1);
+  // box-shadow: 0px 0px 11px -1px rgba(214, 214, 214, 0.1);
 }
 .global_feed {
   font-size: 0.9rem;
   color: #46989a;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid#46989a;
+  display: inline-block;
+  border-bottom: 2px solid rgba(#46989a, 0.5);
 }
 // aside
 
@@ -110,7 +124,7 @@
   margin: 6.8rem 1rem;
 }
 .tags_main_container {
-  background-color: rgba(#fff,.8);
+  background-color: rgba(#fff, 0.8);
   padding: 0.5rem;
   border-radius: 0.3rem;
   box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.2);
@@ -141,6 +155,37 @@
     background-color: transparent;
     border: 1px solid rgba(#46989a, 0.8);
     color: #46989a;
-    text-decoration: underline;
+    // text-decoration: underline;
   }
+}
+.aside_profile_container {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+.aside_profile_pic {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-image: url("../images/man.png");
+  background-position: center;
+  background-size: cover;
+  margin: 0.5rem auto;
+  object-fit: fill;
+  overflow: hidden;
+  margin-top: 0;
+}
+.aside_profile {
+  width: 100%;
+}
+.aside_user_name {
+  padding: 0.5rem;
+  font-weight: 500;
+  color: #202020;
+  font-size: 1.3rem;
+}
+.aside_user_description {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
 }

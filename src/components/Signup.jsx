@@ -9,18 +9,19 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 class Signup extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: "",
       email: "",
-      password: ""
+      password: "",
+      message: ""
     };
   }
 
-  handleChange = event => {
+  handleChange = ({ target: { name, value } }) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: value
     });
   };
 
@@ -41,6 +42,8 @@ class Signup extends React.Component {
       .then(data => {
         if (data.success) {
           this.props.history.push("/signin");
+        } else {
+          this.setState({ message: data.message });
         }
       });
   };
@@ -73,7 +76,7 @@ class Signup extends React.Component {
           <p className="email_registration">
             or use your email for registration
           </p>
-          <form className="create_account_form">
+          <form className="create_account_form" onSubmit={this.handleSignUp}>
             <div className="input_signin_container">
               <input
                 className="input_signin"
@@ -110,7 +113,6 @@ class Signup extends React.Component {
             <input
               type="submit"
               className="signin_button signup_button"
-              onClick={this.handleSignUp}
               value="SIGN UP"
             />
           </form>

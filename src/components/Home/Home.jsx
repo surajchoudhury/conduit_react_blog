@@ -10,6 +10,9 @@ import Middle from "./Middle";
 import Aside from "./Aside";
 import Signup from "../Signup";
 import Signin from "../Signin";
+import Profile from "../profile";
+import NewPost from "../NewPost";
+import Article from "./Article";
 
 class Home extends React.Component {
   constructor() {
@@ -17,7 +20,9 @@ class Home extends React.Component {
     this.state = {
       tag: [],
       articles: [],
-      profiles: []
+      profile: [],
+      menu: "",
+      isLogged: false
     };
   }
 
@@ -28,16 +33,38 @@ class Home extends React.Component {
     fetch("http://localhost:3000/api/v1/articles")
       .then(articles => articles.json())
       .then(articles => this.setState({ articles }));
-    fetch("http://localhost:3000/api/v1/profiles")
-      .then(profiles => profiles.json())
-      .then(profiles => this.setState({ profiles }));
+    fetch("http://localhost:3000/api/v1/users", {
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+      .then(profile => profile.json())
+      .then(profile => this.setState({ profile }));
+    fetch("http://localhost:3000/api/v1/users", {
+      headers: {
+        Authorization: localStorage.token
+      }
+    });
+    
   }
 
+  isLogged = value => {
+    this.setState({ isLogged: value });
+  };
+
+  handleMenu = menu => {
+    this.setState({ menu: menu });
+  };
+
   render() {
-    console.log(this.state.tag.tags);
+    console.log(this.state.article)
     return (
       <section className="home">
-        <Sidebar />
+        <Sidebar
+          menu={this.state.menu}
+          handleMenu={this.handleMenu}
+          logged={this.state.isLogged}
+        />
         <div className="home_main_container">
           <>
             <Switch>
@@ -45,11 +72,24 @@ class Home extends React.Component {
                 <Signup />
               </Route>
               <Route path="/signin">
-                <Signin />
+                <Signin isLogged={this.isLogged} />
+              </Route>
+              <Route path="/newpost">
+                <NewPost />
+              </Route>
+              <Route path="/profile">
+                <Profile profile={this.state.profile} />
+              </Route>
+              <Route path="/articles/:slug">
+                <Article />
               </Route>
               <Route path="/">
                 <Middle articles={this.state.articles.articles} />
-                <Aside tag={this.state.tag.tags} />
+                <Aside
+                  tag={this.state.tag.tags}
+                  profile={this.state.profile}
+                  logged={this.state.isLogged}
+                />
               </Route>
             </Switch>
           </>
