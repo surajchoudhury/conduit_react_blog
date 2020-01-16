@@ -51,17 +51,22 @@ class Following extends React.Component {
           <img className="avatar" src={avatar} alt="" />
         </figure>
         <div className="follow_single_user_container">
-          <Link to={`/usersprofile/${username}`}>
-            <p
-              className="follow_single_user_name"
-              onClick={() => {
-                this.props.isUpdatedFollow && this.props.isUpdatedFollow(true);
-                this.props.followView && this.props.followView("default");
-              }}
-            >
-              {username}
-            </p>
-          </Link>
+          {localStorage.token ? (
+            <Link to={`/usersprofile/${username}`}>
+              <p
+                className="follow_single_user_name"
+                onClick={() => {
+                  this.props.isUpdatedFollow &&
+                    this.props.isUpdatedFollow(true);
+                  this.props.followView && this.props.followView("default");
+                }}
+              >
+                {username}
+              </p>
+            </Link>
+          ) : (
+            <p className="follow_single_user_name">{username}</p>
+          )}
           <p className="follow_single_user_bio">{bio}</p>
           {this.props.profile &&
           this.props.profile._id &&
@@ -80,16 +85,18 @@ class Following extends React.Component {
           ) : (
             ""
           )}
-          <span
-            className={
-              this.props.profile.followingUsers.includes(_id)
-                ? `follow_single_follow`
-                : `unfollow`
-            }
-            onClick={this.handleUnfollow}
-          >
-            Following
-          </span>
+          {localStorage.token ? (
+            <span
+              className={
+                this.props.profile.followingUsers.includes(_id)
+                  ? `follow_single_follow`
+                  : `unfollow`
+              }
+              onClick={this.handleUnfollow}
+            >
+              Following
+            </span>
+          ) : null}
         </div>
       </section>
     );

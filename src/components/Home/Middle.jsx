@@ -56,7 +56,7 @@ class Middle extends React.Component {
                     : `No feeds`}
                 </p>
               ) : (
-                ""
+                <p> Signin to explore conduit..</p>
               )}
             </NavLink>
             <p
