@@ -196,25 +196,27 @@ class Home extends React.Component {
                 </Route>
 
                 <Route path="/">
-                  <Middle
-                    feeds={this.state.feeds}
-                    myfeeds={this.myfeeds}
-                    articles={
-                      this.state.articlesbytags.length
-                        ? this.state.articlesbytags
-                        : this.state.articles.articles
-                    }
-                    globalfeeds={this.globalfeeds}
-                    globalfeedsActive={this.state.globalfeeds}
-                    tagName={this.state.activeTag}
-                    articlesByTags={this.state.articlesbytags}
-                  />
-                  <Aside
-                    tag={this.state.tag.tags}
-                    profile={this.state.profile}
-                    logged={this.state.isLogged}
-                    articlesByTags={this.articlesByTags}
-                  />
+                  <>
+                    <Middle
+                      feeds={this.state.feeds}
+                      myfeeds={this.myfeeds}
+                      articles={
+                        this.state.articlesbytags.length
+                          ? this.state.articlesbytags
+                          : this.state.articles.articles
+                      }
+                      globalfeeds={this.globalfeeds}
+                      globalfeedsActive={this.state.globalfeeds}
+                      tagName={this.state.activeTag}
+                      articlesByTags={this.state.articlesbytags}
+                    />
+                    <Aside
+                      tag={this.state.tag.tags}
+                      profile={this.state.profile}
+                      logged={this.state.isLogged}
+                      articlesByTags={this.articlesByTags}
+                    />
+                  </>
                 </Route>
               </Switch>
             </>

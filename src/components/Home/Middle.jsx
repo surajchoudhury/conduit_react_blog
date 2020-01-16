@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 // Relative imports
 
@@ -56,7 +56,7 @@ class Middle extends React.Component {
                     : `No feeds`}
                 </p>
               ) : (
-                <p> Signin to explore conduit..</p>
+                <p><Link to="/signin" className="sigin_to_conduit"> Signin to explore conduit..</Link></p>
               )}
             </NavLink>
             <p
