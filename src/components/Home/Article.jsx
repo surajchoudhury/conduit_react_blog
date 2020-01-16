@@ -182,7 +182,14 @@ class Article extends React.Component {
                   <p className="single_article_username">
                     <section className="single_article_username_container">
                       <div>
-                        <Link to="/usersprofile">
+                        <Link
+                          to={
+                            this.props.profile._id ===
+                            this.state.article.author._id
+                              ? `/profile`
+                              : `/usersprofile`
+                          }
+                        >
                           <span className="single_article_authorname">
                             {this.state.article.author.username}
                           </span>

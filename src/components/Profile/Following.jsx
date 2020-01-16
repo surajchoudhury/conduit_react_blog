@@ -52,7 +52,13 @@ class Following extends React.Component {
         </figure>
         <div className="follow_single_user_container">
           {localStorage.token ? (
-            <Link to={`/usersprofile/${username}`}>
+            <Link
+              to={
+                this.props.profile._id === _id
+                  ? `/profile`
+                  : `/usersprofile/${username}`
+              }
+            >
               <p
                 className="follow_single_user_name"
                 onClick={() => {
