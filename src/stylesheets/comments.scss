@@ -1,0 +1,218 @@
+.article_info_comments {
+  padding: 1.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  margin: 0.6rem 0;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+.article_title_container_comments {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bg_top_comments {
+  padding: 1rem 0;
+}
+.comment_logo {
+  font-size: 1rem;
+  display: flex;
+  color: rgba(#46989a, 1);
+  align-items: center;
+}
+.comment_count {
+  font-size: 1rem;
+  margin-left: 0.3rem;
+  font-weight: 600;
+}
+.article_title_comments {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 1rem;
+}
+.showing_comments_text {
+  font-weight: 600;
+  line-height: 1.2rem;
+  color: #46989a;
+}
+.author_comment {
+  color: rgba(0, 0, 0, 0.54);
+  padding-top: 0.4rem;
+  font-size: 0.9rem;
+}
+.hr_comment_top {
+  border: 0.5px solid rgba(#46989a, 0.2);
+  margin: 3rem 0 1rem 0;
+}
+
+//form
+.form_post_comment {
+  position: relative;
+  margin-top: 1rem;
+}
+.form_post_comment,
+.input_post_comment {
+  width: 100%;
+  height: 4.5rem;
+}
+.input_post_comment {
+  padding: 1rem;
+  padding-left: 4.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid rgba(#46989a, 0.3);
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s;
+  outline: none;
+  &:focus {
+    padding-left: 1rem;
+    border: 1px solid rgba(#46989a, 0.5);
+    height: 11rem;
+  }
+}
+.input_post_comment:focus ~ .write_your_comment {
+  top: -1rem;
+  z-index: -1;
+}
+.input_post_comment:focus ~ .user_name_comment {
+  bottom: 1.8rem;
+  left: 4.5rem;
+  z-index: 0;
+}
+.input_post_comment:focus ~ .publish_comment {
+  bottom: -5.6rem;
+  left: 1rem;
+  z-index: 0;
+}
+.user_avatar_comment_container {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("../images/man.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(#46989a, 0.1);
+  top: 1rem;
+  left: 1rem;
+  position: absolute;
+}
+.write_your_comment {
+  top: 1.8rem;
+  left: 4.5rem;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.54);
+  transition: all 0.1s;
+  position: absolute;
+}
+.user_avatar_comment {
+  width: 100%;
+}
+.user_name_comment {
+  position: absolute;
+  bottom: -1rem;
+  left: 4.5rem;
+  color: #46989a;
+  z-index: -1;
+  transition: all.2s;
+}
+.publish_comment {
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #46989a;
+  border-radius: 50%;
+  left: 1rem;
+  bottom: -7rem;
+  z-index: -1;
+  font-size: 1rem;
+  transition: all 0.2s;
+  color: #46989a;
+  position: absolute;
+  cursor: pointer;
+  &:hover {
+    transform: rotate(90deg);
+    background-color: #46989a;
+    color: #fff;
+  }
+}
+.user_comments_big_container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.user_image_container_comment {
+  display: flex;
+  align-items: center;
+}
+.user_img_container_comment {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(#46989a, 0.1);
+  background-image: url("../images/man.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.user_comments_container {
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 0.2rem;
+  background-color: #fff;
+}
+.username_container_comment {
+  margin-left: 0.7rem;
+}
+.username_container_comment_big {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.username_comment {
+  font-weight: 500;
+  color: #46989a;
+}
+.date_comment {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
+  padding-top: 0.25rem;
+}
+.comment_text {
+  padding: 1.5rem 0;
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 1.8rem;
+}
+.trash {
+  color: #46989a;
+  height: 1.9rem;
+  width: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  // background-color: #fdf6f7;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #46989a;
+    color: #fff;
+    animation: tilt linear 0.5s;
+  }
+}
+
+@keyframes tilt {
+  5% {
+    transform: rotate(-40deg);
+  }
+  50% {
+    transform: rotate(40deg);
+  }
+}

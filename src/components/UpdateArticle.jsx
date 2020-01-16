@@ -1,12 +1,8 @@
 import React from "react";
-import { MdPublish } from "react-icons/md";
+import { MdUpdate } from "react-icons/md";
 import { withRouter } from "react-router-dom";
 
-// relative import
-
-import {Editor, EditorState} from 'draft-js';
-
-class NewPost extends React.Component {
+class UpdateArticle extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -14,8 +10,7 @@ class NewPost extends React.Component {
       title: null,
       description: null,
       body: null,
-      tags: [],
-      editorState: EditorState.createEmpty()
+      tags: null
     };
   }
 
@@ -23,22 +18,36 @@ class NewPost extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handlePublish = event => {
+  componentDidMount() {
+    this.setState({
+      image: this.props.article && this.props.article.image,
+      title: this.props.article && this.props.article.title,
+      description: this.props.article && this.props.article.description,
+      body: this.props.article && this.props.article.body,
+      tags: this.props.article && this.props.article.tagList
+    });
+  }
+
+  handleUpdate = event => {
     event.preventDefault();
-    fetch("http://localhost:3000/api/v1/articles", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.token
-      },
-      body: JSON.stringify({
-        image: this.state.image,
-        title: this.state.title,
-        description: this.state.description,
-        body: this.state.body,
-        tagList: this.state.tags
-      })
-    })
+    fetch(
+      `http://localhost:3000/api/v1/articles/${this.props.article &&
+        this.props.article.slug}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.token
+        },
+        body: JSON.stringify({
+          image: this.state.image,
+          title: this.state.title,
+          description: this.state.description,
+          body: this.state.body,
+          tagList: this.state.tags
+        })
+      }
+    )
       .then(article => article.json())
       .then(article => {
         if (article.success) {
@@ -54,7 +63,7 @@ class NewPost extends React.Component {
         <div className="form_top_gradient"></div>
         <div className="new_post_form_container">
           <div className="new_post_form_sub_container">
-            <form className="new_post_form" onSubmit={this.handlePublish}>
+            <form className="new_post_form" onSubmit={this.handleUpdate}>
               <input
                 className="input_new_post"
                 type="text"
@@ -86,11 +95,11 @@ class NewPost extends React.Component {
                 cols="30"
                 rows="10"
                 placeholder="Write your article"
+                value={this.state.body}
                 onChange={this.handleChange}
               >
                 {this.state.body}
               </textarea>
-              <Editor editorState={this.state.editorState} onChange={this.onChange} />
               <input
                 className="input_new_post"
                 type="text"
@@ -100,9 +109,9 @@ class NewPost extends React.Component {
                 onChange={this.handleChange}
               />
               <button className="new_post_btn" type="submit">
-                < MdPublish className="publish_icon" />
+                <MdUpdate className="publish_icon" />
               </button>
-              <p className="publish_btn">Publish</p>
+              <p className="publish_btn">Update</p>
             </form>
           </div>
         </div>
@@ -112,4 +121,4 @@ class NewPost extends React.Component {
   }
 }
 
-export default withRouter(NewPost);
+export default withRouter(UpdateArticle);

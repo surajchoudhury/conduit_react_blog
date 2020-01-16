@@ -41,20 +41,31 @@
 .input_new_post {
   padding: 1rem;
   margin: 1rem 0;
-  box-shadow: -1px 6px 9px 0px rgba(70, 152, 154, 0.2);
+  box-shadow: -1px 2px 1px 0px rgba(70, 152, 154, 0.5);
   border-radius: 1.4rem;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   outline: none;
   font-size: 1rem;
   color: rgba(#58b697, 1);
-  transition: all 0.5s;
+  transition: border .3s;
+  resize: vertical;
   &:focus {
-    border: 2px solid rgba(#46989a, 0.5);
+    border: 1px solid rgba(#46989a, 0.5);
   }
 }
 .input_new_post::placeholder {
   color: rgba(#46989a, 0.6);
   font-family: "Raleway", sans-serif;
+}
+.publish_btn {
+  font-size: .9rem;
+  padding-top: .5rem;
+  opacity: 0;
+  transition: all .5s;
+  color: rgba(#46989a, 1);
+}
+.publish_icon {
+  display: inline-block;
 }
 .new_post_btn {
   width: 3rem;
@@ -66,11 +77,15 @@
   color: #46989a;
   border-radius: 50%;
   transition: all 0.5s;
+  outline: none;
   border: none;
   box-shadow: -1px 6px 9px 0px rgba(70, 152, 154, 0.2);
   &:hover {
     transform: scale(1.1);
     background-color: #46989a;
     color: #fff;
+  }
+  &:hover ~ .publish_btn {
+    opacity: 1;
   }
 }

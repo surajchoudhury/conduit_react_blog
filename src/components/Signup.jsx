@@ -4,7 +4,7 @@ import { FaGooglePlusG } from "react-icons/fa";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
-import { FiLock } from "react-icons/fi";
+import { FiLock, FiEyeOff, FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
@@ -15,7 +15,8 @@ class Signup extends React.Component {
       username: "",
       email: "",
       password: "",
-      message: ""
+      message: "",
+      visible: false
     };
   }
 
@@ -102,13 +103,25 @@ class Signup extends React.Component {
             <div className="input_signin_container">
               <input
                 className="input_signin"
-                type="password"
+                type={this.state.visible ? `text` : `password`}
                 name="password"
                 placeholder="Password"
                 value={this.state.password}
                 onChange={this.handleChange}
               />
               <FiLock className="input_logo" />
+              {this.state.password ? (
+                <FiEye
+                  className={!this.state.visible ? `eye` : `eyeOff`}
+                  onClick={() => this.setState({ visible: true })}
+                />
+              ) : null}
+              {this.state.password ? (
+                <FiEyeOff
+                  className={this.state.visible ? `eyeon` : `eyeOff`}
+                  onClick={() => this.setState({ visible: false })}
+                />
+              ) : null}
             </div>
             <input
               type="submit"

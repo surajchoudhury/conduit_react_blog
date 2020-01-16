@@ -101,7 +101,7 @@
   color: #9d9f9e;
   font-size: 0.75rem;
   font-weight: 100;
-  padding: 0.7rem 0;
+  padding: 0.7rem 2.3rem;
   padding-left: 2.3rem;
   background-color: #f4f8f7;
   outline: none;
@@ -113,6 +113,24 @@
   &:focus ~ .input_logo {
     color: #58b697;
   }
+}
+.eye,
+.eyeOff,
+.eyeon {
+  position: absolute;
+  color: #8a8b8b;
+  font-weight: 100;
+  top: 0.7rem;
+  right: .9rem;
+  transition: color 0.3s;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.eyeon {
+  color: #58b697;
+}
+.eyeOff {
+  visibility: hidden;
 }
 .input_signin::placeholder {
   color: #9d9f9e;

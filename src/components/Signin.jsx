@@ -3,7 +3,7 @@ import { TiSocialFacebook } from "react-icons/ti";
 import { FaGooglePlusG } from "react-icons/fa";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { AiOutlineMail } from "react-icons/ai";
-import { FiLock } from "react-icons/fi";
+import { FiLock, FiEyeOff, FiEye } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
 
 class Signin extends React.Component {
@@ -12,7 +12,8 @@ class Signin extends React.Component {
     this.state = {
       email: "",
       password: "",
-      message: ""
+      message: "",
+      visible: false
     };
   }
 
@@ -37,9 +38,8 @@ class Signin extends React.Component {
         if (data.success) {
           this.props.history.push("/");
           localStorage.setItem("token", data.token);
-          localStorage.token
-            ? this.props.isLogged(true)
-            : this.props.isLogged(false);
+          this.props.isUpdated(true);
+          this.props.isLogged(true);
         } else {
           this.setState({ message: data.message });
         }
@@ -85,12 +85,24 @@ class Signin extends React.Component {
             <div className="input_signin_container">
               <input
                 className="input_signin"
-                type="password"
+                type={this.state.visible ? `text` : `password`}
                 placeholder="Password"
                 name="password"
                 onChange={this.handleChange}
               />
               <FiLock className="input_logo" />
+              {this.state.password ? (
+                <FiEye
+                  className={!this.state.visible ? `eye` : `eyeOff`}
+                  onClick={() => this.setState({ visible: true })}
+                />
+              ) : null}
+              {this.state.password ? (
+                <FiEyeOff
+                  className={this.state.visible ? `eyeon` : `eyeOff`}
+                  onClick={() => this.setState({ visible: false })}
+                />
+              ) : null}
             </div>
             <input
               type="submit"

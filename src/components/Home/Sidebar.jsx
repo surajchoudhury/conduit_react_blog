@@ -4,7 +4,6 @@ import { IoMdLogIn } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { FiSettings } from "react-icons/fi";
-import { MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Sidebar = props => {
@@ -16,7 +15,7 @@ const Sidebar = props => {
         </div>
       </div>
       <aside className="sidebar_icons_container">
-        <Link to="/" className="link">
+        <Link to="/">
           <div
             className={
               props.menu === "home"
@@ -57,7 +56,7 @@ const Sidebar = props => {
           >
             <FaRegUserCircle className="sidebar_icon" />
             <p className="sidebar_icon_text">
-              {props.logged || localStorage.token ? `User In` : `Sign Up`}
+              {props.logged || localStorage.token ? `Profile` : `Sign Up`}
             </p>
           </div>
         </Link>
@@ -79,36 +78,21 @@ const Sidebar = props => {
         ) : (
           ""
         )}
+
         {props.logged || localStorage.token ? (
-          <Link to="/newpost">
-            {" "}
+          <Link to="/settings">
             <div
               className={
-                props.menu === "favorited"
+                props.menu === "settings"
                   ? `sidebar_icon_container sidebar_icon_container_active`
                   : `sidebar_icon_container`
               }
-              onClick={() => props.handleMenu("favorited")}
+              onClick={() => props.handleMenu("settings")}
             >
-              <MdFavoriteBorder className="sidebar_icon" />
-              <p className="sidebar_icon_text">Liked</p>
+              <FiSettings className="sidebar_icon settings_icon" />
+              <p className="sidebar_icon_text">Setting</p>
             </div>
           </Link>
-        ) : (
-          ""
-        )}
-        {props.logged || localStorage.token ? (
-          <div
-            className={
-              props.menu === "settings"
-                ? `sidebar_icon_container sidebar_icon_container_active`
-                : `sidebar_icon_container`
-            }
-            onClick={() => props.handleMenu("settings")}
-          >
-            <FiSettings className="sidebar_icon settings_icon" />
-            <p className="sidebar_icon_text">Setting</p>
-          </div>
         ) : (
           ""
         )}
