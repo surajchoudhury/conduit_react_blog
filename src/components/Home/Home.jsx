@@ -19,6 +19,7 @@ import Comments from "./Comments";
 import Settings from "../Profile/Settings";
 import UserContext from "../Context/UserContext";
 import UpdateArticle from "../UpdateArticle";
+import Footer from '../Footer';
 
 class Home extends React.Component {
   constructor() {
@@ -221,6 +222,7 @@ class Home extends React.Component {
               </Switch>
             </>
           </div>
+          <Footer />
         </section>
       </UserContext.Provider>
     );

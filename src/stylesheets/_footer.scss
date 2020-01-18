@@ -1,0 +1,53 @@
+.footer_contents {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  z-index: 77;
+  padding: 0.4rem 1rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fdf6f7;
+}
+.social_medias {
+  width: 17rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.social_link {
+  color: #46989a;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  &:hover {
+    color: #297b7c;
+    transform: scale(1.2);
+  }
+}
+.creator_details {
+  display: flex;
+  align-items: center;
+}
+.creator_avatar_container {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.creator_avatar {
+  width: 100%;
+}
+
+.creator_name {
+  color: #46989a;
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+}
+.created_at {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+  width: 8rem;
+  text-align: right;
+}
