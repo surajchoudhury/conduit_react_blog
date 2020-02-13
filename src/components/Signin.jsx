@@ -70,7 +70,17 @@ class Signin extends React.Component {
               <TiSocialLinkedin />
             </span>
           </div>
-          <p className="email_registration">or use your email account</p>
+          <p
+            className={
+              this.state.message
+                ? "email_registration_err"
+                : "email_registration"
+            }
+          >
+            {this.state.message
+              ? `⚠︎  ${this.state.message}`
+              : "or use your email account"}
+          </p>
           <form className="create_account_form" onSubmit={this.handleSignin}>
             <div className="input_signin_container">
               <input
