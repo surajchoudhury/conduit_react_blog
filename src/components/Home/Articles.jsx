@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MdFavorite } from "react-icons/md";
 
 const Articles = props => {
-  let date = new Date().toDateString();
+  let date = new Date(props.createdAt).toDateString();
   return (
     <Link to={`/articles/${props.slug}`} className="article_container">
       <article>

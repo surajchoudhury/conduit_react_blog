@@ -13,7 +13,7 @@ const Popular = props => {
           <p className="popular_author_name">
             {props.author && props.author.username}
           </p>
-          <date className="popular_date">{"jan 7 2020"}</date>
+      <date className="popular_date">{new Date(props.createdAt).toDateString()}</date>
         </div>
       </div>
     </Link>

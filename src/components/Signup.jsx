@@ -28,7 +28,7 @@ class Signup extends React.Component {
 
   handleSignUp = event => {
     event.preventDefault();
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

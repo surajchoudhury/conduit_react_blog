@@ -20,7 +20,7 @@ class Settings extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("/api/v1/users", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ class Settings extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("/api/v1/users", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

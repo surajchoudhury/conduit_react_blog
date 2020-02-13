@@ -11,7 +11,7 @@ class Following extends React.Component {
 
   handleFollow = () => {
     let authorName = this.props.username;
-    fetch(`http://localhost:3000/api/v1/profiles/${authorName}/follow`, {
+    fetch(`/api/v1/profiles/${authorName}/follow`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ class Following extends React.Component {
 
   handleUnfollow = () => {
     let authorName = this.props.username;
-    fetch(`http://localhost:3000/api/v1/profiles/${authorName}/follow`, {
+    fetch(`/api/v1/profiles/${authorName}/follow`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

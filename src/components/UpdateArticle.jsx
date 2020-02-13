@@ -31,7 +31,7 @@ class UpdateArticle extends React.Component {
   handleUpdate = event => {
     event.preventDefault();
     fetch(
-      `http://localhost:3000/api/v1/articles/${this.props.article &&
+      `/api/v1/articles/${this.props.article &&
         this.props.article.slug}`,
       {
         method: "PUT",

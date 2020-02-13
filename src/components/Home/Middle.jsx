@@ -15,7 +15,7 @@ class Middle extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/articles/feed", {
+    fetch("/api/v1/articles/feed", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

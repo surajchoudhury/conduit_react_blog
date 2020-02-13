@@ -19,7 +19,7 @@ import Comments from "./Comments";
 import Settings from "../Profile/Settings";
 import UserContext from "../Context/UserContext";
 import UpdateArticle from "../UpdateArticle";
-import Footer from '../Footer';
+import Footer from "../Footer";
 
 class Home extends React.Component {
   constructor() {
@@ -44,14 +44,14 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/tags")
+    fetch("/api/v1/tags")
       .then(tag => tag.json())
       .then(tag => this.setState({ tag }));
-    fetch("http://localhost:3000/api/v1/articles")
+    fetch("/api/v1/articles")
       .then(articles => articles.json())
       .then(articles => this.setState({ articles }));
 
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("/api/v1/users", {
       headers: {
         "Content-type": "application/json",
         authorization: localStorage.token
@@ -81,13 +81,13 @@ class Home extends React.Component {
   };
   handleUpdated = () => {
     if (this.state.isUpdated) {
-      fetch("http://localhost:3000/api/v1/articles")
+      fetch("/api/v1/articles")
         .then(articles => articles.json())
         .then(articles => this.setState({ articles }));
-      fetch("http://localhost:3000/api/v1/tags")
+      fetch("/api/v1/tags")
         .then(tag => tag.json())
         .then(tag => this.setState({ tag }));
-      fetch("http://localhost:3000/api/v1/users", {
+      fetch("/api/v1/users", {
         headers: {
           "Content-type": "application/json",
           authorization: localStorage.token

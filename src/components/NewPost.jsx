@@ -25,7 +25,7 @@ class NewPost extends React.Component {
 
   handlePublish = event => {
     event.preventDefault();
-    fetch("http://localhost:3000/api/v1/articles", {
+    fetch("/api/v1/articles", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

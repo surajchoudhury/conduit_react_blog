@@ -6,6 +6,7 @@ import { MdPublish } from "react-icons/md";
 // relative import
 
 import Loader from "./Loader";
+import { LoaderSmall } from "./Loader";
 import Comment from "./Comment";
 
 class Comments extends React.Component {
@@ -13,13 +14,12 @@ class Comments extends React.Component {
     super(props);
     this.state = {
       comments: null,
-      commentText: ""
+      commentText: "",
+      isLoading: false
     };
   }
   componentDidMount() {
-    fetch(
-      `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`
-    )
+    fetch(`/api/v1/articles/${this.props.match.params.slug}`)
       .then(res => res.json())
       .then(comments => this.setState({ comments }));
   }
@@ -34,7 +34,8 @@ class Comments extends React.Component {
 
   postComments = event => {
     event.preventDefault();
-    fetch(`http://localhost:3000/api/v1/${this.props.match.url}`, {
+    this.setState({ isLoading: true });
+    fetch(`/api/v1/articles/${this.props.match.params.slug}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,11 +49,12 @@ class Comments extends React.Component {
       .then(comment => {
         if (comment.success) {
           this.setState({ commentText: "" });
-          fetch(
-            `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`
-          )
+          fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
-            .then(comments => this.handleState(comments));
+            .then(comments => {
+              this.handleState(comments);
+              this.setState({ isLoading: false });
+            });
         }
       });
   };
@@ -90,10 +92,14 @@ class Comments extends React.Component {
                 <p className="showing_comments_text">Comments</p>
                 <form
                   onSubmit={this.postComments}
-                  className="form_post_comment"
+                  className={"form_post_comment"}
                 >
                   <input
-                    className="input_post_comment"
+                    className={
+                      this.state.isLoading
+                        ? "input_post_comment input_post_comment_loading"
+                        : "input_post_comment"
+                    }
                     type="text"
                     name="commentText"
                     autoComplete="off"
@@ -120,20 +126,24 @@ class Comments extends React.Component {
                     <MdPublish />
                   </button>
                 </form>
-                <section className="user_comments_big_container">
-                  {this.state.comments && this.state.comments.comments ? (
-                    this.state.comments.comments.map(comment => (
-                      <Comment
-                        {...comment}
-                        handleState={this.handleState}
-                        authorId = {author}
-                        profile={this.props.profile}
-                      />
-                    ))
-                  ) : (
-                    <Loader />
-                  )}
-                </section>
+                {this.state.isLoading ? (
+                  <LoaderSmall />
+                ) : (
+                  <section className="user_comments_big_container">
+                    {this.state.comments && this.state.comments.comments ? (
+                      this.state.comments.comments.map(comment => (
+                        <Comment
+                          {...comment}
+                          handleState={this.handleState}
+                          authorId={author}
+                          profile={this.props.profile}
+                        />
+                      ))
+                    ) : (
+                      <Loader />
+                    )}
+                  </section>
+                )}
               </section>
             </div>
           </article>

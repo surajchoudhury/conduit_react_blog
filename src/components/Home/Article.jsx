@@ -18,7 +18,7 @@ class Article extends React.Component {
 
   componentDidMount() {
     fetch(
-      `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`
+      `/api/v1/articles/${this.props.match.params.slug}`
     )
       .then(res => res.json())
       .then(article => {
@@ -30,7 +30,7 @@ class Article extends React.Component {
   handleFollow = () => {
     let authorName =
       this.state.article.author && this.state.article.author.username;
-    fetch(`http://localhost:3000/api/v1/profiles/${authorName}/follow`, {
+    fetch(`/api/v1/profiles/${authorName}/follow`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,12 +39,11 @@ class Article extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({ follow: true, unfollow: false });
         this.props.isUpdated(true);
         if (this.state.follow) {
           fetch(
-            `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`
+            `/api/v1/articles/${this.props.match.params.slug}`
           )
             .then(res => res.json())
             .then(article => {
@@ -57,7 +56,7 @@ class Article extends React.Component {
   handleUnfollow = () => {
     let authorName =
       this.state.article.author && this.state.article.author.username;
-    fetch(`http://localhost:3000/api/v1/profiles/${authorName}/follow`, {
+    fetch(`/api/v1/profiles/${authorName}/follow`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -66,12 +65,12 @@ class Article extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+  
         this.setState({ unfollow: true, follow: false });
         this.props.isUpdated(true);
         if (this.state.unfollow) {
           fetch(
-            `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`
+            `/api/v1/articles/${this.props.match.params.slug}`
           )
             .then(res => res.json())
             .then(article => {
@@ -83,7 +82,7 @@ class Article extends React.Component {
 
   favoriteArticle = () => {
     fetch(
-      `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}/favorite`,
+      `/api/v1/articles/${this.props.match.params.slug}/favorite`,
       {
         method: "POST",
         headers: {
@@ -96,7 +95,7 @@ class Article extends React.Component {
       .then(favorited => {
         if (favorited.success) {
           fetch(
-            `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`
+            `/api/v1/articles/${this.props.match.params.slug}`
           )
             .then(res => res.json())
             .then(article => {
@@ -109,7 +108,7 @@ class Article extends React.Component {
 
   unfavoriteArticle = () => {
     fetch(
-      `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}/favorite`,
+      `/api/v1/articles/${this.props.match.params.slug}/favorite`,
       {
         method: "DELETE",
         headers: {
@@ -122,7 +121,7 @@ class Article extends React.Component {
       .then(unfavorited => {
         if (unfavorited.success) {
           fetch(
-            `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`
+            `/api/v1/articles/${this.props.match.params.slug}`
           )
             .then(res => res.json())
             .then(article => {
@@ -135,7 +134,7 @@ class Article extends React.Component {
 
   deleteArticle = () => {
     fetch(
-      `http://localhost:3000/api/v1/articles/${this.props.match.params.slug}`,
+      `/api/v1/articles/${this.props.match.params.slug}`,
       {
         method: "DELETE",
         headers: {
@@ -285,7 +284,7 @@ class Article extends React.Component {
                   </p>
 
                   <p className="single_article_date">
-                    {new Date().toDateString()}
+                    {new Date(this.state.article.createdAt).toDateString()}
                   </p>
                 </div>
               </div>

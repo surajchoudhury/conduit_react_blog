@@ -1,5 +1,5 @@
 .text-center {
-  width:616px;
+  width: 616px;
   margin: auto;
   text-align: center;
 }
@@ -12,11 +12,21 @@
   border: 5px solid;
   border-top-color: #46989a;
   border-bottom-color: rgba(255, 255, 255, 0.3);
-  border-left-color: #46989a;;
+  border-left-color: #46989a;
   border-right-color: rgba(255, 255, 255, 0.3);
   -webkit-animation: loader4 1s ease-in-out infinite;
   animation: loader4 1s ease-in-out infinite;
 }
+.text-center_loader2 {
+  width: 616px;
+  margin: 2rem auto;
+  text-align: center;
+}
+.loader_small {
+  width: 30px;
+  height: 30px;
+}
+
 @keyframes loader4 {
   from {
     transform: rotate(0deg);

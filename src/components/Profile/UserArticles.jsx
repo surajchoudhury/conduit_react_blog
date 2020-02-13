@@ -20,7 +20,7 @@ const UserArticles = props => {
             <p className="author_name_small author_name_user">
               {props.author.username}
             </p>
-            <p className="date_small">{new Date().toDateString()}</p>
+            <p className="date_small">{new Date(props.createdAt).toDateString()}</p>
           </div>
         </section>
         <section className="user_article_section_right">

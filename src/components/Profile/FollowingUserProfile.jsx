@@ -22,7 +22,7 @@ class FollowingUserProfile extends React.Component {
 
   componentDidMount() {
     fetch(
-      `http://localhost:3000/api/v1/profiles/${this.props.match.params.username}`,
+      `/api/v1/profiles/${this.props.match.params.username}`,
       {
         method: "GET",
         headers: {
@@ -45,7 +45,7 @@ class FollowingUserProfile extends React.Component {
   handleUpdated = () => {
     if (this.state.isUpdated) {
       fetch(
-        `http://localhost:3000/api/v1/profiles/${this.props.match.params.username}`,
+        `/api/v1/profiles/${this.props.match.params.username}`,
         {
           headers: {
             "Content-type": "application/json",
@@ -151,7 +151,6 @@ class FollowingUserProfile extends React.Component {
 
   render() {
     let count = 0;
-    console.log(this.state.profile && this.state.profile.favorited);
     return (
       <section className="profile_container">
         <div className="profile_bg_top">
