@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 //Relative import
 import Main from "./components/Main";
 import "./stylesheets/style.scss";
+import "./stylesheets/prism1.css";
 
 function App() {
   return (

@@ -22,7 +22,7 @@ class Comment extends React.Component {
           fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(comments => {
-              this.props.handleState(comments);
+              this.props.handleState(comments.article);
               this.setState({ isLoading: false });
             });
         }
@@ -65,7 +65,11 @@ class Comment extends React.Component {
               ) : null}
             </div>
           </div>
-          <p className={this.state.isLoading ? "comment_text_center" : "comment_text"}>
+          <p
+            className={
+              this.state.isLoading ? "comment_text_center" : "comment_text"
+            }
+          >
             {this.state.isLoading ? (
               <p className="loader4 loader_small"></p>
             ) : (

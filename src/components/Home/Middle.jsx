@@ -5,6 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 
 import Articles from "./Articles";
 import { FaHashtag } from "react-icons/fa";
+import Loader from "./Loader";
 
 class Middle extends React.Component {
   constructor() {
@@ -56,7 +57,12 @@ class Middle extends React.Component {
                     : `No feeds`}
                 </p>
               ) : (
-                <p><Link to="/signin" className="sigin_to_conduit"> Signin to explore conduit..</Link></p>
+                <p>
+                  <Link to="/signin" className="sigin_to_conduit">
+                    {" "}
+                    Signin to explore conduit..
+                  </Link>
+                </p>
               )}
             </NavLink>
             <p
@@ -71,16 +77,20 @@ class Middle extends React.Component {
             </p>
           </div>
 
-          <article className="articles_container">
-            {this.props.feeds &&
-            this.state.myfeeds &&
-            this.state.myfeeds.success
-              ? this.state.myfeeds.articleFeeds.map(article => (
-                  <Articles {...article} />
-                ))
-              : this.props.articles &&
-                this.props.articles.map(article => <Articles {...article} />)}
-          </article>
+          {this.props.feeds || this.props.articles ? (
+            <article className="articles_container">
+              {this.props.feeds &&
+              this.state.myfeeds &&
+              this.state.myfeeds.success
+                ? this.state.myfeeds.articleFeeds.map(article => (
+                    <Articles {...article} />
+                  ))
+                : this.props.articles &&
+                  this.props.articles.map(article => <Articles {...article} />)}
+            </article>
+          ) : (
+            <Loader />
+          )}
         </div>
       </section>
     );

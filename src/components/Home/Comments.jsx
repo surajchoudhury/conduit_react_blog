@@ -21,7 +21,9 @@ class Comments extends React.Component {
   componentDidMount() {
     fetch(`/api/v1/articles/${this.props.match.params.slug}`)
       .then(res => res.json())
-      .then(comments => this.setState({ comments }));
+      .then(comments => {
+        this.setState({ comments: comments.article });
+      });
   }
 
   onChange = ({ target: { value, name } }) => {
@@ -52,7 +54,7 @@ class Comments extends React.Component {
           fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(comments => {
-              this.handleState(comments);
+              this.handleState(comments.article);
               this.setState({ isLoading: false });
             });
         }

@@ -5,6 +5,7 @@ import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoMdHeartDislike } from "react-icons/io";
+import Prism from "prismjs";
 
 class Article extends React.Component {
   constructor(props) {
@@ -17,14 +18,18 @@ class Article extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      `/api/v1/articles/${this.props.match.params.slug}`
-    )
+    Prism.highlightAll();
+    fetch(`/api/v1/articles/${this.props.match.params.slug}`)
       .then(res => res.json())
       .then(article => {
-        this.setState({ article });
-        this.props.singleArticle(article);
+        if (article.success) {
+          this.setState({ article: article.article });
+          this.props.singleArticle(article.article, article.MDarticle);
+        }
       });
+  }
+  componentDidUpdate() {
+    Prism.highlightAll();
   }
 
   handleFollow = () => {
@@ -42,9 +47,7 @@ class Article extends React.Component {
         this.setState({ follow: true, unfollow: false });
         this.props.isUpdated(true);
         if (this.state.follow) {
-          fetch(
-            `/api/v1/articles/${this.props.match.params.slug}`
-          )
+          fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(article => {
               this.setState({ article });
@@ -65,13 +68,10 @@ class Article extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-  
         this.setState({ unfollow: true, follow: false });
         this.props.isUpdated(true);
         if (this.state.unfollow) {
-          fetch(
-            `/api/v1/articles/${this.props.match.params.slug}`
-          )
+          fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(article => {
               this.setState({ article });
@@ -81,22 +81,17 @@ class Article extends React.Component {
   };
 
   favoriteArticle = () => {
-    fetch(
-      `/api/v1/articles/${this.props.match.params.slug}/favorite`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.token
-        }
+    fetch(`/api/v1/articles/${this.props.match.params.slug}/favorite`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.token
       }
-    )
+    })
       .then(res => res.json())
       .then(favorited => {
         if (favorited.success) {
-          fetch(
-            `/api/v1/articles/${this.props.match.params.slug}`
-          )
+          fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(article => {
               this.props.isUpdated(true);
@@ -107,22 +102,17 @@ class Article extends React.Component {
   };
 
   unfavoriteArticle = () => {
-    fetch(
-      `/api/v1/articles/${this.props.match.params.slug}/favorite`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.token
-        }
+    fetch(`/api/v1/articles/${this.props.match.params.slug}/favorite`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.token
       }
-    )
+    })
       .then(res => res.json())
       .then(unfavorited => {
         if (unfavorited.success) {
-          fetch(
-            `/api/v1/articles/${this.props.match.params.slug}`
-          )
+          fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(article => {
               this.props.isUpdated(true);
@@ -133,16 +123,13 @@ class Article extends React.Component {
   };
 
   deleteArticle = () => {
-    fetch(
-      `/api/v1/articles/${this.props.match.params.slug}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.token
-        }
+    fetch(`/api/v1/articles/${this.props.match.params.slug}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.token
       }
-    )
+    })
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -296,7 +283,12 @@ class Article extends React.Component {
                   alt=""
                 />
               </div>
-              <p className="single_article_body">{this.state.article.body}</p>
+              <p
+                className="single_article_body"
+                dangerouslySetInnerHTML={{
+                  __html: this.state.article.body
+                }}
+              ></p>
               <hr className="hr_line_single_article" />
               <Link to={`${this.props.location.pathname}/comments`}>
                 <div className="see_comments_conatiner">

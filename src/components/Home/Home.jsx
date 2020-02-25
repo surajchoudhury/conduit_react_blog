@@ -28,6 +28,7 @@ class Home extends React.Component {
       tag: [],
       articles: [],
       article: null,
+      MDarticle: null,
       profile: [],
       menu: "",
       articlesbytags: [],
@@ -72,8 +73,8 @@ class Home extends React.Component {
     this.setState({ isLogged: value });
   };
 
-  singleArticle = Article => {
-    this.setState({ article: Article });
+  singleArticle = (Article, MDarticle) => {
+    this.setState({ article: Article, MDarticle });
   };
 
   isUpdated = value => {
@@ -172,7 +173,7 @@ class Home extends React.Component {
 
                 <Route path="/updatearticle">
                   <UpdateArticle
-                    article={this.state.article}
+                    article={this.state.MDarticle}
                     isUpdated={this.isUpdated}
                   />
                 </Route>
