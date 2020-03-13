@@ -94,7 +94,11 @@ class Comments extends React.Component {
                 <p className="showing_comments_text">Comments</p>
                 <form
                   onSubmit={this.postComments}
-                  className={"form_post_comment"}
+                  className={
+                    localStorage.token
+                      ? "form_post_comment"
+                      : "form_post_comment_disable"
+                  }
                 >
                   <input
                     className={

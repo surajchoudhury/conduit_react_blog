@@ -50,7 +50,7 @@ class Article extends React.Component {
           fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(article => {
-              this.setState({ article });
+              this.setState({ article: article.article });
             });
         }
       });
@@ -74,7 +74,7 @@ class Article extends React.Component {
           fetch(`/api/v1/articles/${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(article => {
-              this.setState({ article });
+              this.setState({ article: article.article });
             });
         }
       });
@@ -95,7 +95,7 @@ class Article extends React.Component {
             .then(res => res.json())
             .then(article => {
               this.props.isUpdated(true);
-              this.setState({ article });
+              this.setState({ article: article.article });
             });
         }
       });
@@ -116,7 +116,7 @@ class Article extends React.Component {
             .then(res => res.json())
             .then(article => {
               this.props.isUpdated(true);
-              this.setState({ article });
+              this.setState({ article: article.article });
             });
         }
       });
@@ -144,13 +144,15 @@ class Article extends React.Component {
       <>
         {this.state.article ? (
           <article className="single_article_container">
-            <section className="single_article_wrapper">
-              <p className="sigle_article_title">{this.state.article.title}</p>
-              <p className="sigle_article_description">
+            <section>
+              <p className="sigle_article_title single_article_wrapper">
+                {this.state.article.title}
+              </p>
+              <p className="sigle_article_description single_article_wrapper">
                 {this.state.article.description}
               </p>
 
-              <div className="single_article_user_info_container">
+              <div className="single_article_user_info_container single_article_wrapper">
                 <Link to="/usersprofile">
                   <figure className="user_info_avatar_container">
                     <img
@@ -164,7 +166,7 @@ class Article extends React.Component {
                   </figure>
                 </Link>
 
-                <div className="single_article_info_container">
+                <div className="single_article_info_container single_article_wrapper">
                   <p className="single_article_username">
                     <section className="single_article_username_container">
                       <div>
@@ -283,15 +285,15 @@ class Article extends React.Component {
                   alt=""
                 />
               </div>
-              <p
-                className="single_article_body"
+              <div
+                className="single_article_body single_article_wrapper"
                 dangerouslySetInnerHTML={{
                   __html: this.state.article.body
                 }}
-              ></p>
-              <hr className="hr_line_single_article" />
+              ></div>
+              <hr className="hr_line_single_article single_article_wrapper" />
               <Link to={`${this.props.location.pathname}/comments`}>
-                <div className="see_comments_conatiner">
+                <div className="see_comments_conatiner single_article_wrapper">
                   <span className="see_comments">
                     {this.state.article.comments.length
                       ? `See comments`
